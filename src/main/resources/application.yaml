@@ -1,0 +1,27 @@
+spring:
+  r2dbc:
+    url: r2dbc:postgresql://localhost:5432/url_shortener
+    username: test_user
+    password: password
+  flyway:
+    url: jdbc:postgresql://localhost:5432/url_shortener
+    enabled: true
+    baseline-on-migrate: true
+    user: ${spring.r2dbc.username}
+    password: ${spring.r2dbc.password}
+logging:
+  level:
+    root: INFO
+    org.springframework.web.server.adapter.HttpWebHandlerAdapter: DEBUG
+management:
+  endpoints:
+    web:
+      exposure:
+        include:
+          - health
+  endpoint:
+    health:
+      show-details: always
+
+expiration:
+  days: 30
